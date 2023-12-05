@@ -1,2 +1,2 @@
-from fprlib import cfit
-from fprlib import mprint
+from main import cfit
+from main import mprint
