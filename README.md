@@ -1,4 +1,4 @@
-# Primer uporabe nove funkcije cfit
+# Primer uporabe funkcije cfit
 
 ```Python
 import fprlib #as fp
