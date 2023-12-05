@@ -1,3 +1,14 @@
+# Inštalacija (za Windows)
+
+- odpreš CMD
+- vtipkaš : pip install fprlib
+- v .py datoteko vpišeš : import fprlib as fp
+
+# Seznam ukazov
+
+- cfit : uporabno za fitanje krivulj
+- mprint : uporabno za printanje matrik
+
 # Primer uporabe funkcije cfit
 
 ```Python
