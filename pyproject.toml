@@ -7,10 +7,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fprlib"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="DrKvass"},
 ]
 description = "Knjižnica za lažje opravljanje FPR na FMFju"
+readme = "README.md"
 
 requires-python = ">=3.8"
