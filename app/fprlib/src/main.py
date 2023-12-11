@@ -7,7 +7,38 @@ import uncertainties as un
 from uncertainties import ufloat
 from uncertainties.umath import *
 from decimal import *
+#------------------------------------------------------------------------
+#------------------------------------------------------------------------
 
+def FindLocalExtremes(arr2, arr): 
+    if len(arr) != len(arr2):
+        print("Error: list lengths do not match!")
+        return
+    if len(arr) <3:
+        print("Error: List is too short")
+    
+    n = len(arr)
+    mx = [] 
+    mn = [] 
+    #First point
+    if(arr[0] > arr[1]): 
+        mx.append((arr2[0], arr[0])) 
+    elif(arr[0] < arr[1]): 
+        mn.append((arr2[0], arr[0]))
+    #Last point
+    if(arr[-1] > arr[-2]): 
+        mx.append((arr2[n-1], arr[n-1])) 
+    elif(arr[-1] < arr[-2]): 
+        mn.append((arr2[n-1], arr[n-1])) 
+    #All inside points
+    for i in range(1, n-1): 
+        if(arr[i-1] > arr[i] < arr[i + 1]): 
+            mn.append((arr2[i],arr[i])) 
+        elif(arr[i-1] < arr[i] > arr[i + 1]): 
+            mx.append((arr2[i],arr[i]))
+    return (mx,mn)
+
+#------------------------------------------------------------------------
 def mprint(matrix):
     s = [[str(e) for e in row] for row in matrix]
     lens = [max(map(len, col)) for col in zip(*s)]
@@ -16,7 +47,7 @@ def mprint(matrix):
     print ('\n'.join(table))
     print()
     
-#-----------
+#------------------------------------------------------------------------
 def cfit(func, x_data, y_data, s=None, p0=None):
     tl = len(x_data)
     if len(s) != len(set(s)):
