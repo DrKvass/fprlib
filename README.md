@@ -6,27 +6,38 @@
 
 # Seznam ukazov
 
+- DataToFloat : Avtomatično spremeni nabor podatkov v aritmetično sredino z napako
+- ErrorCalc : Izračuna rezultat poljubne enačbe z napako z znanimi vrednostmi
+- FindLocalExtremes : uporabno za iskanje lokalnih ekstremov podatkov
 - cfit : uporabno za fitanje krivulj
 - mprint : uporabno za printanje matrik
 
-# Primer uporabe funkcije cfit
+# Razlaga ***DataToFloat***
 
-```Python
-import fprlib #as fp
-import numpy as np
+> ## fprlib.DataToFloat(\<seznam vrednosti\>, \<ime spremenljivke\>)
 
-x_data = [-6.62934E-1,-6.36725E-1,-6.12907E-1,-5.99908E-1,-5.93818E-1,-5.86678E-1,-5.82887E-1,-5.77581E-1,-5.73450E-1,-5.71544E-1,-5.69519E-1,-5.67124E-1,-5.64384E-1,-5.60124E-1,-5.57659E-1,-5.55432E-1,-5.53430E-1,-5.51513E-1,-5.49471E-1,-5.47633E-1,-5.45375E-1,-5.43347E-1,-5.41005E-1,-5.38391E-1,-5.36362E-1,-5.33630E-1,-5.29340E-1,-5.22832E-1,-5.14236E-1,-5.09088E-1,-4.96033E-1,-4.82724E-1,-4.28678E-1,+1.08242E+0,+1.87425E+0,+3.86342E+0,+4.79353E+0,+6.52731E+0,+7.85109E+0,+8.31908E+0,+8.98060E+0,+1.02541E+1,+1.04246E+1,+1.04806E+1]
-y_data = [-1.54238E+1,-8.77151E+0,-4.78847E+0,-3.18064E+0,-2.56410E+0,-1.94406E+0,-1.65661E+0,-1.29949E+0,-1.05447E+0,-9.50160E-1,-8.45721E-1,-7.30154E-1,-6.07445E-1,-4.35915E-1,-3.46365E-1,-2.71186E-1,-2.08004E-1,-1.51217E-1,-9.44567E-2,-4.64407E-2,+8.65516E-3,+5.47404E-2,+1.04184E-1,+1.54969E-1,+1.91395E-1,+2.36552E-1,+2.99386E-1,+3.78305E-1,+4.58030E-1,+4.95166E-1,+5.63105E-1,+6.05569E-1,+6.62091E-1,+6.70630E-1,+6.71116E-1,+6.71733E-1,+6.71947E-1,+6.72297E-1,+6.72552E-1,+6.72637E-1,+6.72751E-1,+6.72968E-1,+6.72991E-1,+6.73010E-1]
-sez = ["a","b","c"]
-p = [-1,-10,1]
+### Obvezne spremenljivke:
 
-def funkcija(x, dol, sir, c):
-    return dol*np.exp(sir*x)+c
+1. \<seznam vrednosti\> : Seznam vrednosti za katere se išče aritmetična sredina in napaka.
+2. \<ime spremenljivke\> : Ime, ki bo pripisano vrnjeni spremenljivki kot \<tag\> v *ufloat*-u.
 
-fprlib.cfit(funkcija, x_data, y_data,sez,p)
-```
+## Funkcija:
 
-# Razlaga ***CFIT***
+Funkcija avtomatično po formulah pridobi aritmetično sredino ter absolutno napako, s pomočjo standardne deviacije.
+
+## Primer uporabe:
+
+> fprlib.DataToFloat([1,2,3,4,5,6], "Upor" )
+
+# Razlaga ***ErrorCalc***
+
+> WIP
+
+# Razlaga ***FindLocalExtremes***
+
+> WIP
+
+# Razlaga ***cfit***
 
 > ## fprlib.cfit(\<funkcija\>, \<X podatki\>, \<Y podatki\>, \<imena spremenljivk\>=None, \<začetne vrednosti\>=None)
 
@@ -64,6 +75,22 @@ ter definiramo seznam začetnih vrednosti npr.:
 
 ***Opomba*** : na prvem mestu v seznamih "sez" in "p" mora biti ime oz. začetna vrednost, ki odgovarja spremenljivki "a" iz formule, ter na drugem mestu teh seznamov vrednosti, ki pripadajo spremenljivki "b" iz formule.
 
+# Primer uporabe funkcije cfit
+
+```Python
+import fprlib #as fp
+import numpy as np
+
+x_data = [-6.62934E-1,-6.36725E-1,-6.12907E-1,-5.99908E-1,-5.93818E-1,-5.86678E-1,-5.82887E-1,-5.77581E-1,-5.73450E-1,-5.71544E-1,-5.69519E-1,-5.67124E-1,-5.64384E-1,-5.60124E-1,-5.57659E-1,-5.55432E-1,-5.53430E-1,-5.51513E-1,-5.49471E-1,-5.47633E-1,-5.45375E-1,-5.43347E-1,-5.41005E-1,-5.38391E-1,-5.36362E-1,-5.33630E-1,-5.29340E-1,-5.22832E-1,-5.14236E-1,-5.09088E-1,-4.96033E-1,-4.82724E-1,-4.28678E-1,+1.08242E+0,+1.87425E+0,+3.86342E+0,+4.79353E+0,+6.52731E+0,+7.85109E+0,+8.31908E+0,+8.98060E+0,+1.02541E+1,+1.04246E+1,+1.04806E+1]
+y_data = [-1.54238E+1,-8.77151E+0,-4.78847E+0,-3.18064E+0,-2.56410E+0,-1.94406E+0,-1.65661E+0,-1.29949E+0,-1.05447E+0,-9.50160E-1,-8.45721E-1,-7.30154E-1,-6.07445E-1,-4.35915E-1,-3.46365E-1,-2.71186E-1,-2.08004E-1,-1.51217E-1,-9.44567E-2,-4.64407E-2,+8.65516E-3,+5.47404E-2,+1.04184E-1,+1.54969E-1,+1.91395E-1,+2.36552E-1,+2.99386E-1,+3.78305E-1,+4.58030E-1,+4.95166E-1,+5.63105E-1,+6.05569E-1,+6.62091E-1,+6.70630E-1,+6.71116E-1,+6.71733E-1,+6.71947E-1,+6.72297E-1,+6.72552E-1,+6.72637E-1,+6.72751E-1,+6.72968E-1,+6.72991E-1,+6.73010E-1]
+sez = ["a","b","c"]
+p = [-1,-10,1]
+
+def funkcija(x, dol, sir, c):
+    return dol*np.exp(sir*x)+c
+
+fprlib.cfit(funkcija, x_data, y_data,sez,p)
+```
 # Primer ampak prilagojen razlagi
 
 ```python
