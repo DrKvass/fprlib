@@ -31,6 +31,23 @@ Funkcija avtomatično po formulah pridobi aritmetično sredino ter absolutno nap
 
 # Razlaga ***ErrorCalc***
 
+> ## fprlib.ErrorCalc(\<funkcija\>,\<knjižnica spremenljivk\>, \<latex_print\>=True/False):
+
+## Obvezne spremenljivke:
+
+1. \<funkcija\> : Vstavi funkcijo oziroma njeno "ime" ampak ***obvezno brez citatov!***
+2. \<knjižnica spremenljivk\> : Vstavi knjižnico spremenljivk.
+
+### Neobvezne spremeljike:
+
+1. \<latex_print\> : True/False keyword argument, ki omogoči izpis latex kode za določene številke.
+
+## Funkcija:
+
+Funkcija avtomatično izračuna vrednost rezultata z napako in matrikami kovariance in korelacije ter ostale relevantne podatke potrebne za večino vaj pri FPR.
+
+## Primer uporabe:
+
 > WIP
 
 # Razlaga ***FindLocalExtremes***
@@ -39,7 +56,7 @@ Funkcija avtomatično po formulah pridobi aritmetično sredino ter absolutno nap
 
 # Razlaga ***cfit***
 
-> ## fprlib.cfit(\<funkcija\>, \<X podatki\>, \<Y podatki\>, \<imena spremenljivk\>=None, \<začetne vrednosti\>=None)
+> ## fprlib.cfit(\<funkcija\>, \<X podatki\>, \<Y podatki\>, \<imena spremenljivk\>=None, \<začetne vrednosti\>=None):
 
 ### Obvezne spemenljivke:
 
