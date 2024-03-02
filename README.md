@@ -48,11 +48,36 @@ Funkcija avtomatično izračuna vrednost rezultata z napako in matrikami kovaria
 
 ## Primer uporabe:
 
-> WIP
+> var = {
+>     "R" : ufloat( 2.123*10**(-3) , 1*10**(-6), "R"),
+>     "D" : ufloat( 4.15*10**(-3) , 2.4*10**(-4)*10**(-3), "D") ,
+>     "l" : ufloat( 999.12*10**(-3) , 0.0058*10**(-3), "l") 
+> }
+>
+> def f():
+>     return np.pi*var["R"]*var["D"]*var["D"]/4/var["l"]
+>
+> fp.ErrorCalc(f, var)
+>
 
 # Razlaga ***FindLocalExtremes***
 
-> WIP
+> fprlib.FindLocalExtremes(\<Seznam X meritev\>, \<Seznam Y meritev\>):
+
+## Obvezne spremenljivke:
+
+1. \<funkcija\> : Vstavi funkcijo oziroma njeno "ime" ampak ***obvezno brez citatov!***
+2. \<knjižnica spremenljivk\> : Vstavi knjižnico spremenljivk.
+
+## Primer uporabe:
+
+> fprlib.FindLocalExtremes([1,2,3,2,1],[1,2,3,4,5]):
+
+***Opomba*** : seznama morata biti iste dolžine!
+
+## Funkcija:
+
+Izpiše vse lokalne ekstreme, ponavadi je pri podatkih teh veliko, in moraš ročno izbrati zanimivi lokalni ekstrem.
 
 # Razlaga ***cfit***
 
@@ -75,7 +100,7 @@ Da bi naš program lahko karkoli računal moramo predpisati fizikalno funkcijo, 
 
 > def \<funkcija\>(x, a, b, c, d)
 >    
->‎return f(x,a,b,c,d)
+>‎ return f(x,a,b,c,d)
 
 nato moramo definirati podatke za x in y v obliki *python seznama (list-a)*.
 Dodatno lahko definiramo še imena spremenljivk v seznamu, npr.:
