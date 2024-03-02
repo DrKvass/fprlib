@@ -1,2 +1,2 @@
 from .src.main import (
-    mprint,cfit,FindLocalExtremes,)
+    mprint,cfit,FindLocalExtremes,ErrorCalc,DataToFloat,)

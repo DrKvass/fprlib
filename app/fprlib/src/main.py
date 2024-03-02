@@ -116,3 +116,58 @@ def cfit(func, x_data, y_data, s=None, p0=None):
 
     print("\n-| Graph |---------------------------------------------\n" )
     plt.show()
+
+#------------------------------------------------------------------------
+
+def DataToFloat(l, tag):
+    if not isinstance(l, list):
+        print("Error, first input isn't a list!")
+        return
+    elif not isinstance(tag,str):
+        print("Error, second input isn't a string!")
+        return
+    elif isinstance(l,list) and isinstance(tag,str):
+        for i in range(len(l)):
+            if not ( isinstance(l[i], int) or isinstance(l[i], float)):
+                print("Error, list contains non-numerical objects!")
+                return
+        return ufloat(st.mean(l), st.stdev(l)/sqrt(len(l)), tag)
+    
+#------------------------------------------------------------------------
+
+def ErrorCalc(func, var, latex_print=False):
+    rezultat = func()
+    #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    # Pripravi seznam vseh ufloat-ov potrebnih za konstrukcijo matrik
+    seznam = []
+    for i in var:
+        seznam = seznam + [var[i]]
+    seznam = seznam + [rezultat]
+
+    # Konstruira matrike
+    array_cov = un.covariance_matrix(seznam)
+    array_cor = un.correlation_matrix(seznam)
+
+    #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    # Izpis rezultatov programa
+
+    print("----------------------------------------------------------------------------------------------------------------------------------------\nVhodni podatki : \n")
+    for i in var:
+        print(repr(var[i]))
+    print("----------------------------------------------------------------------------------------------------------------------------------------\nObčutljivostni koeficient : \n")
+    for i in var:
+        print(i + " : " + str(abs(rezultat.derivatives[var[i]])))
+    print("----------------------------------------------------------------------------------------------------------------------------------------\nPrispevek negotovosti : \n")
+    for (var, error) in rezultat.error_components().items():
+        print( "{}: {}".format(var.tag, error))
+    print("----------------------------------------------------------------------------------------------------------------------------------------\nmatrike se zapišejo v isti vrsti kot spremenljivke v 'dictionary'-ju torej prvi stolpec predstavlja prvo zapisano vrednost kakor tudi prva vrstica predstavlja prvo zapisano vrednost.\n----------------------------------------------------------------------------------------------------------------------------------------\nCorrelation matrix : \n")
+    mprint(array_cor)
+    print("----------------------------------------------------------------------------------------------------------------------------------------\nCovariance matrix : \n")
+    mprint(array_cov)
+    print("----------------------------------------------------------------------------------------------------------------------------------------\nRezultat : " + str(repr(rezultat)) + "\n" + "95% prepričanost : " + str(rezultat.s*2) + "\n\n\n") 
+    if latex_print:
+        print("---LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print---\n----------------------------------------------------------------------------------------------------------------------------------------\nVhodni podatki : \n")
+        for i in var:
+            print(repr("{:L}".format(var[i])))
+        print("----------------------------------------------------------------------------------------------------------------------------------------\nRezultat : " + str("{:L}".format(rezultat)) + "\n\n---LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print-LaTeX print---")
